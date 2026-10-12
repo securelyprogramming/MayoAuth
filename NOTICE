@@ -1,0 +1,5 @@
+MayoAuth
+Copyright 2026 Programming Securely contributors
+
+Includes the oidc-provider and openid-client libraries by Filip Skokan and contributors,
+used under their MIT licenses. Third-party licenses remain applicable.

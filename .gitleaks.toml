@@ -1,0 +1,6 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Generated dependencies, build output, browser artifacts and ignored instance state"
+paths = ['''(?:^|/)(node_modules|dist|test-results|playwright-report|\.mayoauth)/''']

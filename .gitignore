@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.mayoauth/
+.env
+.env.*
+*.db
+*.db-*
+*.sqlite*
+*.pem
+*.key
+playwright-report/
+test-results/
+.DS_Store
+coverage/

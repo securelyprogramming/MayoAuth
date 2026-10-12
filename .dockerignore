@@ -1,0 +1,7 @@
+.git
+node_modules
+.mayoauth
+.env*
+test-results
+playwright-report
+*.db*

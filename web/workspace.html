@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Operator console · MayoAuth beta</title>
+    <link rel="icon" href="/mark.svg" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/console.css" />
+    <script src="/console.js" defer></script>
+  </head>
+  <body data-mode="live">
+    <div class="beta-bar">
+      <span class="beta-tag">BETA</span> Self-hosted Community instance · operator console
+    </div>
+    <div class="console-layout">
+      <aside class="sidebar">
+        <a class="brand" href="/"
+          ><img src="/mark.svg" width="32" height="32" alt="" />Mayo<span>Auth</span></a
+        >
+        <div class="workspace-badge">
+          <span class="workspace-icon">C</span>
+          <div><strong>Community instance</strong><small>Operator managed</small></div>
+          <span>⌄</span>
+        </div>
+        <nav aria-label="Workspace">
+          <a href="#overview" data-tab="overview"><span aria-hidden="true">◫</span> Overview</a
+          ><a href="#users" data-tab="users"><span aria-hidden="true">◎</span> People</a
+          ><a href="#apps" data-tab="apps"><span aria-hidden="true">⌘</span> Applications</a
+          ><a href="#connectors" data-tab="connectors"
+            ><span aria-hidden="true">⇄</span> OIDC connectors</a
+          ><a href="#logs" data-tab="logs"><span aria-hidden="true">≡</span> Audit log</a
+          ><a href="#cli" data-tab="cli"><span aria-hidden="true">›_</span> CLI & setup</a>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="sidebar-plan">
+            <small>COMMUNITY / BETA</small><strong>No per-user license.</strong
+            ><a href="/docs#beta">Current capabilities ↗</a>
+          </div>
+          <a href="/">← Back to MayoAuth</a
+          ><button class="sidebar-reset" data-action="logout">Sign out</button>
+        </div>
+      </aside>
+      <main class="console-main">
+        <header class="console-topbar">
+          <span
+            >INSTANCE <span class="breadcrumb">/ <span id="breadcrumb">Overview</span></span></span
+          ><span class="pill">COMMUNITY</span>
+        </header>
+        <div class="console-content">
+          <div class="demo-note">
+            <span aria-hidden="true">◎</span>
+            <p>
+              <strong>You are managing a real instance.</strong> User and application changes take
+              effect here. Use non-sensitive accounts during beta.
+            </p>
+            <a href="/docs#beta">Beta scope →</a>
+          </div>
+          <div id="console-error" class="error" role="alert"></div>
+          <div id="view" aria-live="polite"><p>Connecting to your instance…</p></div>
+        </div>
+      </main>
+    </div>
+    <dialog id="editor">
+      <form id="editor-form">
+        <div class="dialog-title">
+          <h2 id="editor-title"></h2>
+          <button type="button" class="icon-button" data-action="close" aria-label="Close dialog">
+            ×
+          </button>
+        </div>
+        <div id="editor-fields"></div>
+        <p id="form-error" class="error" role="alert"></p>
+        <div class="dialog-actions">
+          <button type="button" class="button secondary" data-action="close">Cancel</button
+          ><button type="submit" class="button primary">Save →</button>
+        </div>
+      </form>
+    </dialog>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

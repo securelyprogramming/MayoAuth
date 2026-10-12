@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Docs & CLI · MayoAuth beta</title>
+    <link rel="icon" href="/mark.svg" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="beta-bar">
+      <span class="beta-tag">BETA</span> Early software. Test with non-sensitive accounts.
+    </div>
+    <header class="site-header wrap">
+      <a class="brand" href="/"
+        ><img src="/mark.svg" width="36" height="36" alt="" />Mayo<span>Auth</span></a
+      >
+      <nav>
+        <a href="/#editions">Editions</a
+        ><a href="https://github.com/securelyprogramming/MayoAuth">Source ↗</a>
+      </nav>
+      <a class="button small primary" href="/demo">Try the demo →</a>
+    </header>
+    <main class="docs-layout wrap">
+      <nav class="docs-nav" aria-label="Documentation">
+        <a href="#quickstart">Quickstart</a><a href="#cli">CLI reference</a
+        ><a href="#oidc">OIDC & connectors</a><a href="#limits">Resource limits</a
+        ><a href="#editions">Community / Premium</a><a href="#beta">Beta scope</a
+        ><a href="#privacy">Privacy</a>
+      </nav>
+      <div class="docs-content">
+        <div class="eyebrow">MAYOAUTH / 0.1.0-BETA.1</div>
+        <h1>Start small. Own it.</h1>
+        <p>
+          The public website offers a browser-only sample workspace. The Community repository
+          contains the real self-hosted OIDC server, administration API, console, and CLI.
+        </p>
+        <section id="quickstart">
+          <h2>Run the Community server</h2>
+          <p>
+            Requires Node.js 24 LTS. No vendor account is needed. Choose an instance directory on
+            persistent storage. The default is a private <code>.mayoauth</code> directory in your
+            working folder.
+          </p>
+          <pre>
+git clone https://github.com/securelyprogramming/MayoAuth.git
+cd MayoAuth
+npm ci
+npm link
+
+# Bash: read a password without echo or command history
+read -r -s -p "Admin password: " MAYOAUTH_INIT_PASSWORD
+printf '%s' "$MAYOAUTH_INIT_PASSWORD" | mayoauth init \
+  --issuer http://localhost:8787 \
+  --admin-email admin@example.test --password-stdin
+unset MAYOAUTH_INIT_PASSWORD
+
+mayoauth serve
+# Open http://localhost:8787/login</pre
+          >
+          <p>
+            The issuer must exactly match the origin that applications use. For a deployed instance,
+            initialize with its HTTPS origin. Do not change the issuer of an active instance
+            casually. Instance keys, encrypted-connector keys, and the local CLI token are saved
+            with private file permissions.
+          </p>
+        </section>
+        <section id="cli">
+          <h2>One console. One API. One CLI.</h2>
+          <pre>
+mayoauth status
+mayoauth doctor
+mayoauth users list
+mayoauth apps add --name "My app" \
+  --redirect-uri http://localhost:3000/callback
+mayoauth connectors list
+mayoauth logs --export &gt; audit.json
+mayoauth --help</pre
+          >
+          <p>
+            Use <code>--data-dir</code> to select an instance. For a remote server, set
+            <code>MAYOAUTH_URL</code> and <code>MAYOAUTH_TOKEN</code> in a private environment.
+            Passwords and connector secrets are accepted on stdin, never as command arguments.
+            Remote CLI connections require HTTPS.
+          </p>
+          <p>
+            The CLI is installed from the repository today. There is no published npm package or
+            shell installer to download yet.
+          </p>
+        </section>
+        <section id="oidc">
+          <h2>Standard OIDC, explicit trust</h2>
+          <p>
+            Discovery is at <code>/.well-known/openid-configuration</code>. The issuer supports
+            authorization code with required PKCE S256, signed ID tokens, a JWKS endpoint, consent,
+            and userinfo. Applications use exact registered callback URLs. Public dynamic
+            registration is disabled.
+          </p>
+          <p>
+            Upstream connectors use <code>openid-client</code> to validate state, nonce, PKCE, and
+            tokens. Configure the callback as <code>INSTANCE_ORIGIN/connectors/callback</code>. An
+            administrator must map the upstream provider’s immutable <code>sub</code> to an existing
+            local user. MayoAuth never auto-links accounts just because email addresses match.
+          </p>
+          <p>
+            Google, Microsoft, GitHub, and other named providers are not individually certified in
+            this beta. A generic OIDC connector must be tested with your own tenant before use.
+            GitHub’s regular OAuth login is not itself a generic OIDC provider.
+          </p>
+        </section>
+        <section id="limits">
+          <h2>Bounded by design</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Resource</th>
+                <th>Default boundary</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SQLite main database</td>
+                <td>256 MiB, enforced with max_page_count</td>
+              </tr>
+              <tr>
+                <td>SQLite page cache</td>
+                <td>8 MiB configured cache budget</td>
+              </tr>
+              <tr>
+                <td>Audit history</td>
+                <td>10,000 events / 30 days, whichever expires first</td>
+              </tr>
+              <tr>
+                <td>OIDC transient records</td>
+                <td>10,000 rows, with expiry cleanup</td>
+              </tr>
+              <tr>
+                <td>Container</td>
+                <td>256 MiB memory, 0.5 CPU, 80 processes</td>
+              </tr>
+              <tr>
+                <td>Temporary filesystem / logs</td>
+                <td>16 MiB tmpfs / 2 × 5 MiB log files</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            The beta uses one SQLite process with DELETE journaling. The database-file cap excludes
+            rollback journals, backups, and filesystem overhead. The page-cache setting is a budget,
+            not a total-process memory limit; the container enforces the latter. Allow at least 1
+            GiB of dedicated storage headroom and apply a host filesystem quota for a hard
+            directory-level ceiling. A full database rejects writes; it never silently removes
+            identities.
+          </p>
+          <p>
+            Use <code>mayoauth status</code> or the console’s storage panel to inspect usage. The
+            public website/demo creates no server-side identity database.
+          </p>
+        </section>
+        <section id="editions">
+          <h2>The Community / Premium boundary</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Capability</th>
+                <th>Community beta</th>
+                <th>Managed Premium plan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>OIDC, users, connectors, CLI</td>
+                <td>Included</td>
+                <td>Same foundation</td>
+              </tr>
+              <tr>
+                <td>Audit export & basic metrics</td>
+                <td>Included</td>
+                <td>Longer managed retention & alerts</td>
+              </tr>
+              <tr>
+                <td>User count</td>
+                <td>No license cap</td>
+                <td>Managed capacity beyond planned 20-user free tier</td>
+              </tr>
+              <tr>
+                <td>Hosting, updates, backups</td>
+                <td>You operate</td>
+                <td>We operate</td>
+              </tr>
+              <tr>
+                <td>Support & availability</td>
+                <td>Community issues</td>
+                <td>Planned priority support and service commitments</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            <strong>Cloud Free and Premium are planned services.</strong> No hosted production
+            tenants, subscription checkout, or payments are implemented. The public demo is not the
+            future Cloud service. We have not set Premium pricing.
+          </p>
+        </section>
+        <section id="beta">
+          <h2>Beta means beta.</h2>
+          <div class="note amber">
+            Use non-sensitive test accounts. The project has not undergone an independent security
+            assessment. The beta is an inspectable starting point, with explicit limits.
+          </div>
+          <p>
+            Implemented: single-instance OIDC, local passwords, explicit upstream OIDC account
+            linking, user suspension, application registration, bounded audit data, basic metrics,
+            console, and CLI.
+          </p>
+          <p>
+            Not implemented: built-in MFA/passkeys, account self-service or recovery, email
+            delivery/verification, SAML, SCIM, directory synchronization, refresh-token flows,
+            distributed deployment, managed tenant isolation, billing, or support SLAs. Built-in MFA
+            belongs in Community when implemented.
+          </p>
+          <p>
+            Account suspension revokes persisted sessions and grants. Already issued ID tokens may
+            remain verifiable until their short expiry; relying applications must enforce their own
+            sessions and revocation strategy. This beta is not a full Okta replacement.
+          </p>
+        </section>
+        <section id="privacy">
+          <h2>Keep the demo synthetic</h2>
+          <p>
+            The demo saves sample users, apps, connectors, and events in your browser’s local
+            storage. Use sample addresses ending in <code>@example.test</code>. It never creates
+            real accounts, contacts identity providers, sends email, or issues identity tokens.
+            Resetting the demo removes this sample data.
+          </p>
+          <p>
+            The site has no analytics scripts, tracking cookies, or third-party fonts. The hosting
+            reverse proxy may retain normal request logs. Self-hosted instance data remains on the
+            infrastructure you operate.
+          </p>
+        </section>
+        <p>
+          <a href="https://github.com/securelyprogramming/MayoAuth"
+            >Read the code. Open an issue. Make it better. ↗</a
+          >
+        </p>
+      </div>
+    </main>
+    <footer class="wrap site-footer">
+      <a href="/">← MayoAuth</a><span>Open source. Apache 2.0. Built by Programming Securely.</span>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="MayoAuth beta: open-source identity and OIDC. Try the no-signup demo, run the Community server, and manage it from your terminal."
+    />
+    <meta name="theme-color" content="#154b3c" />
+    <title>MayoAuth — Your identity. Your rules.</title>
+    <link rel="icon" href="/mark.svg" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="beta-bar">
+      <span class="beta-tag">BETA</span> Built in the open. Early software.
+      <a href="/docs#beta">See what’s ready ↗</a>
+    </div>
+    <header class="site-header wrap">
+      <a href="/" class="brand"
+        ><img src="/mark.svg" width="36" height="36" alt="" />Mayo<span>Auth</span></a
+      >
+      <nav aria-label="Main">
+        <a href="#how">Product</a><a href="#editions">Editions</a><a href="/docs">Docs & CLI</a
+        ><a class="nav-github" href="https://github.com/securelyprogramming/MayoAuth">GitHub ↗</a>
+      </nav>
+      <a class="button small primary" href="/demo">Try the demo <span>→</span></a>
+    </header>
+    <main id="main">
+      <section class="hero wrap">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="live-dot"></span> OPEN SOURCE. OPEN DOORS.</div>
+          <h1>Your identity.<br />Your rules.<br /><span>Your budget.</span></h1>
+          <p class="hero-intro">
+            A simpler way to connect people and applications. Own your OIDC identity layer, see
+            what’s happening, and keep your keys.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="/demo">Take it for a spin <span>↗</span></a
+            ><a class="button secondary" href="/docs#quickstart"
+              >Self-host MayoAuth <span>→</span></a
+            >
+          </div>
+          <p class="micro">No signup for the demo. No vendor account to self-host.</p>
+          <div class="hero-foot">
+            <span>Apache 2.0</span><span>CLI included</span><span>No self-hosted user cap</span>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Illustrative MayoAuth identity dashboard">
+          <div class="visual-top">
+            <div class="window-dots"><i></i><i></i><i></i></div>
+            <span>mayoauth / community</span><span class="pill">ILLUSTRATION</span>
+          </div>
+          <div class="visual-body">
+            <div class="visual-title">
+              <div>
+                <span class="eyebrow">ONE PLACE TO START</span>
+                <h2>Access, connected.</h2>
+              </div>
+              <img src="/mark.svg" width="36" height="36" alt="" />
+            </div>
+            <div class="identity-map">
+              <div class="map-node people-node">
+                <span class="node-icon">◎</span><strong>Your people</strong
+                ><small>Users & identities</small>
+              </div>
+              <div class="map-line"></div>
+              <div class="map-node auth-node">
+                <img src="/mark.svg" width="42" height="42" alt="" /><strong>MayoAuth</strong
+                ><small>OIDC + PKCE</small>
+              </div>
+              <div class="map-line"></div>
+              <div class="map-node app-node">
+                <span class="node-icon">⌘</span><strong>Your apps</strong
+                ><small>Exact redirect URIs</small>
+              </div>
+            </div>
+            <div class="visual-event">
+              <span class="event-check">✓</span>
+              <div>
+                <strong>A sign-in you can explain.</strong
+                ><small>Authenticate → approve → audit</small>
+              </div>
+              <span class="mono">OIDC</span>
+            </div>
+            <div class="visual-bottom">
+              <span><i class="live-dot"></i> You run the infrastructure.</span
+              ><span>You own the data.</span>
+            </div>
+          </div>
+          <div class="visual-code">
+            <span class="terminal-dollar">$</span> mayoauth doctor <span class="code-ok">✓</span
+            ><br /><span class="terminal-muted">issuer · pkce · storage limits</span>
+          </div>
+          <div class="visual-stamp">LESS FRICTION.<br />MORE CONTROL.<span>↗</span></div>
+        </div>
+      </section>
+      <div class="principles wrap">
+        <span>Identity shouldn’t require a sales call.</span>
+        <div>STANDARD PROTOCOLS <b>+</b> VISIBLE AUDIT TRAIL <b>+</b> YOUR INFRASTRUCTURE</div>
+      </div>
+      <section class="section wrap" id="how">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">01 / THE IDENTITY LAYER</div>
+            <h2>The essentials.<br />Within reach.</h2>
+          </div>
+          <p>
+            Start with one app. Add your people. Understand every sign-in. A small, inspectable
+            foundation you can run yourself.
+          </p>
+        </div>
+        <div class="feature-rows">
+          <article>
+            <span class="feature-number">01</span>
+            <h3>Connect your apps.</h3>
+            <p>
+              Register OIDC applications with exact redirect URIs and required PKCE. Link an
+              upstream OIDC provider using explicit account mappings.
+            </p>
+            <span class="feature-label">OIDC / AUTHORIZATION CODE</span>
+          </article>
+          <article>
+            <span class="feature-number">02</span>
+            <h3>See the trail.</h3>
+            <p>
+              Inspect sign-ins and administration events. Export audit data. Read authenticated
+              Prometheus metrics and database usage.
+            </p>
+            <span class="feature-label">AUDIT / METRICS / LIMITS</span>
+          </article>
+          <article>
+            <span class="feature-number">03</span>
+            <h3>Keep your freedom.</h3>
+            <p>
+              Run the Community server without a vendor account or per-user license. Use the same
+              API from the console and CLI.
+            </p>
+            <span class="feature-label">APACHE 2.0 / SELF-HOSTED</span>
+          </article>
+        </div>
+        <p class="scope-note">
+          Beta scope: single-instance OIDC. Built-in MFA, SAML, SCIM, high availability, and hosted
+          Cloud are on the roadmap. <a href="/docs#beta">Read the current limits →</a>
+        </p>
+      </section>
+      <section class="cli-section">
+        <div class="wrap cli-grid">
+          <div>
+            <div class="eyebrow">02 / MEET YOUR NEW CLI</div>
+            <h2>At home in<br />your terminal.</h2>
+            <p>Create users. Register apps. Inspect logs.<br />Give the mouse a break.</p>
+            <a href="/docs#cli" class="text-link">Explore the CLI reference ↗</a>
+          </div>
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="window-dots"><i></i><i></i><i></i></div>
+              <span>mayoauth — community beta</span>
+            </div>
+            <pre><span class="terminal-muted"># From a checked-out repository</span>
+<span class="terminal-dollar">$</span> npm ci
+<span class="terminal-dollar">$</span> npm link
+
+<span class="terminal-muted"># Your infrastructure. Your users.</span>
+<span class="terminal-dollar">$</span> mayoauth users list
+<span class="terminal-dollar">$</span> mayoauth apps list
+<span class="terminal-dollar">$</span> mayoauth logs --export
+<span class="terminal-dollar">$</span> mayoauth doctor</pre>
+            <div class="terminal-footer">Real commands. Real API. Included in Community.</div>
+          </div>
+        </div>
+      </section>
+      <section class="section wrap" id="editions">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">03 / PICK YOUR LEVEL OF HANDS-ON</div>
+            <h2>Pay for convenience.<br />Keep the essentials.</h2>
+          </div>
+          <p>
+            Core identity belongs in the open. Managed operations are where the commercial service
+            will earn its keep.
+          </p>
+        </div>
+        <div class="plan-grid">
+          <article class="plan">
+            <span class="pill">AVAILABLE IN BETA</span>
+            <h3>Community</h3>
+            <div class="plan-price">$0 <small>software license</small></div>
+            <p>Your servers. Your data. Your call.</p>
+            <ul>
+              <li>Uncapped self-hosted users</li>
+              <li>OIDC issuer & upstream connectors</li>
+              <li>Local password authentication</li>
+              <li>Audit export & basic metrics</li>
+              <li>Console, API & CLI</li>
+            </ul>
+            <a class="button secondary" href="/docs#quickstart">Run it yourself →</a
+            ><small>You supply hosting and operations.</small>
+          </article>
+          <article class="plan featured">
+            <span class="pill">PLANNED · NOT YET AVAILABLE</span>
+            <h3>Cloud Free</h3>
+            <div class="plan-price">20 <small>users included</small></div>
+            <p>Same open foundation. Hosted for you.</p>
+            <ul>
+              <li>Planned free production tier</li>
+              <li>No credit card to start</li>
+              <li>OIDC & essential audit logs</li>
+              <li>Managed updates</li>
+              <li>Same CLI and export paths</li>
+            </ul>
+            <a class="button primary" href="/demo">Explore the demo →</a
+            ><small>Today’s demo is a browser simulation.</small>
+          </article>
+          <article class="plan">
+            <span class="pill">PLANNED · NOT YET AVAILABLE</span>
+            <h3>Premium</h3>
+            <div class="plan-price">More <small>operations, less work</small></div>
+            <p>For teams that want someone on call.</p>
+            <ul>
+              <li>Managed capacity beyond 20 users</li>
+              <li>Longer managed log retention</li>
+              <li>Scheduled backups & restore help</li>
+              <li>Operational alerts & availability</li>
+              <li>Priority support</li>
+            </ul>
+            <a class="button secondary" href="/docs#editions">See the product boundary →</a
+            ><small>Pricing and service terms are not set.</small>
+          </article>
+        </div>
+        <div class="promise">
+          <img src="/mark.svg" width="32" height="32" alt="" />
+          <p>
+            <strong>No security tax.</strong> OIDC, audit export, and core authentication stay in
+            Community. Planned built-in MFA will be part of Community too.
+          </p>
+          <a href="https://github.com/securelyprogramming/MayoAuth/blob/main/docs/EDITIONS.md"
+            >Our open-source promise ↗</a
+          >
+        </div>
+      </section>
+      <section class="closing wrap">
+        <div class="eyebrow">SMALL START. OPEN FUTURE.</div>
+        <h2>Let your people in.<br /><span>Leave the lock-in out.</span></h2>
+        <a class="button primary" href="/demo">Try MayoAuth <span>↗</span></a>
+        <p>Try the 20-user sample workspace. No signup.</p>
+      </section>
+    </main>
+    <footer class="wrap site-footer">
+      <a class="brand" href="/"
+        ><img src="/mark.svg" width="28" height="28" alt="" />Mayo<span>Auth</span></a
+      >
+      <p>Built by <a href="https://github.com/securelyprogramming">Programming Securely</a>.</p>
+      <div>
+        <a href="/docs#beta">Beta status</a
+        ><a href="https://github.com/securelyprogramming/MayoAuth">Source ↗</a
+        ><a href="/docs#privacy">Privacy</a>
+      </div>
+    </footer>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
