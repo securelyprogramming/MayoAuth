@@ -15,4 +15,5 @@ Disallow: /account
 Disallow: /workspace
 Disallow: /app/
 Disallow: /orgs/
+Sitemap: https://mayoauth.com/sitemap.xml
 Sitemap: https://mayoauth.com/learning-sitemap.xml

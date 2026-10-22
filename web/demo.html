@@ -3,8 +3,37 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="robots" content="noindex" />
-    <title>Sample workspace · MayoAuth beta</title>
+    <title>MayoAuth demo — sample OIDC workspace, no signup</title>
+    <meta
+      name="description"
+      content="Try the MayoAuth sample workspace in your browser. Explore sample users and applications. No signup, and the data stays on this device."
+    />
+    <link rel="canonical" href="https://mayoauth.com/demo" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MayoAuth demo — sample OIDC workspace, no signup" />
+    <meta
+      property="og:description"
+      content="Try the MayoAuth sample workspace in your browser. Explore sample users and applications. No signup, and the data stays on this device."
+    />
+    <meta property="og:url" content="https://mayoauth.com/demo" />
+    <meta property="og:image" content="https://mayoauth.com/mark.svg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MayoAuth demo — sample OIDC workspace, no signup" />
+    <meta
+      name="twitter:description"
+      content="Try the MayoAuth sample workspace in your browser. Explore sample users and applications. No signup, and the data stays on this device."
+    />
+    <meta name="twitter:image" content="https://mayoauth.com/mark.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "MayoAuth demo — sample OIDC workspace, no signup",
+        "url": "https://mayoauth.com/demo",
+        "description": "Try the MayoAuth sample workspace in your browser. Explore sample users and applications. No signup, and the data stays on this device.",
+        "isPartOf": { "@type": "WebSite", "name": "MayoAuth", "url": "https://mayoauth.com/" }
+      }
+    </script>
     <link rel="icon" href="/mark.svg" />
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/console.css" />
@@ -58,7 +87,18 @@
             <a href="/docs#quickstart">Self-host →</a>
           </div>
           <div id="console-error" class="error" role="alert"></div>
-          <div id="view" aria-live="polite"><p>Loading sample workspace…</p></div>
+          <div id="view" aria-live="polite">
+            <div class="view-heading">
+              <div>
+                <div class="eyebrow">SAMPLE WORKSPACE</div>
+                <h1>Identity, under your control.</h1>
+                <p>
+                  A browser-only sample of this open-source OIDC workspace. No signup, and the data
+                  stays in this browser.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </div>
