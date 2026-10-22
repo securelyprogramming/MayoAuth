@@ -16,7 +16,7 @@ concurrency:
 jobs:
   baseline:
     if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
-    uses: securelyprogramming/security-workflows/.github/workflows/security-baseline.yml@392e3b93a2fe1a935feafcb66e53a9c3cbd1edda
+    uses: securelyprogramming/security-workflows/.github/workflows/security-baseline.yml@61ff2135a0e58d1961994cf6fc99a7d8a48110c2
     with:
       enable_secrets: true
       enable_vuln: true
