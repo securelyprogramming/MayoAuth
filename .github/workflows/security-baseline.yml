@@ -1,0 +1,24 @@
+name: Security baseline
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  schedule:
+    - cron: "15 15 * * 4"
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: security-baseline-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  baseline:
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+    uses: securelyprogramming/security-workflows/.github/workflows/security-baseline.yml@392e3b93a2fe1a935feafcb66e53a9c3cbd1edda
+    with:
+      enable_secrets: true
+      enable_vuln: true
+      enable_config: true
+      enable_actions: true
