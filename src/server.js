@@ -662,5 +662,5 @@ function mountWeb(app) {
   app.use(express.static(web, { extensions: ['html'], maxAge: 0 }));
 }
 function page(title, body) {
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${h(title)} · MayoAuth</title><link rel="icon" href="/mark.svg"><link rel="stylesheet" href="/style.css"></head><body><div class="beta-bar"><span class="beta-tag">BETA</span> Early software. Test with non-sensitive accounts.</div><main class="auth-card"><a class="brand" href="/"><img src="/mark.svg" alt="" width="32" height="32">Mayo<span>Auth</span></a><h1>${h(title)}</h1>${body}</main></body></html>`;
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>${h(title)} · MayoAuth</title><link rel="icon" href="/mark.svg"><link rel="stylesheet" href="/style.css"></head><body><div class="beta-bar"><span class="beta-tag">BETA</span> Early software. Test with non-sensitive accounts.</div><main class="auth-card"><a class="brand" href="/"><img src="/mark.svg" alt="" width="32" height="32">Mayo<span>Auth</span></a><h1>${h(title)}</h1>${body}</main></body></html>`;
 }
